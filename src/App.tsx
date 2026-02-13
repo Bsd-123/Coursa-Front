@@ -1,12 +1,12 @@
 import './App.css'
 //import Login from './login'
-import UserRegister from './userRegister'
+import OwnerRegister from './ownerRegister.tsx'
 
 function App() {
 
   return (
     <>
-      <UserRegister/>
+      <OwnerRegister/>
     </>
   )
 }
