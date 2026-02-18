@@ -6,6 +6,10 @@ export type User ={
     role: Role
 }
 
-export type Role = {
-    role: 'user' | 'admin' | 'owner'
-}
+export const ROLES = {
+    USER: 'user',
+    ADMIN: 'admin',
+    OWNER: 'owner'
+} as const;
+
+export type Role = typeof ROLES[keyof typeof ROLES];

@@ -1,15 +1,24 @@
 import LogoImg from './Logo.png';
 import { useState } from 'react';
-import type { User } from '../types/user.types';
-
+import { type User ,ROLES} from '../types/user.types';
+import { useAuthContext } from '../auth/useAuthContext';
+import { Link, useNavigate } from 'react-router';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { setSession } from '../auth/auth.utils';
+import {
+  login as loginService,
+  type LoginType,
+} from '../services/auth.service';
+import { Paths } from '../routes/paths';
 function UserRegister(){
     const [userDetails, setUserDetails] = useState<User>({
         id : 0,
         name: "",
         email: "",
         password: "",
-        role : 'user'
+        role : ROLES.USER
     });
+    const { setUser } = useAuthContext()
     const [error, setError] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {

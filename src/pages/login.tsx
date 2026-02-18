@@ -1,6 +1,15 @@
 import { useState } from 'react';
-
+import { useAuthContext } from '../auth/useAuthContext';
+import {
+  login as loginService,
+  type LoginType,
+} from '../services/auth.service';
+import { Link, useNavigate } from 'react-router';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 function Login(){
+    useDocumentTitle('Login');
+    const navigate = useNavigate()
+    const { setUser } = useAuthContext()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -26,6 +35,7 @@ function Login(){
 
         console.log('Logging in with:', { email, password });
         setError('');
+        setUser(login(email,password))
     };
 
     return (
