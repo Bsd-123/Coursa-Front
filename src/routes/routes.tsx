@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Layout from '../layouts/basicLayout'
-import  Login from '../login'
-import UserRegister from '../userRegister'
+import  Login from '../pages/login'
+import UserRegister from '../pages/userRegister'
 
 function Routes(){
     

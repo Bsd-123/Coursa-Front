@@ -1,9 +1,10 @@
 import LogoImg from './Logo.png';
 import { useState } from 'react';
-import type { user } from './types/user.types';
+import type { User } from '../types/user.types';
 
 function UserRegister(){
-    const [userDetails, setUserDetails] = useState<user>({
+    const [userDetails, setUserDetails] = useState<User>({
+        id : 0,
         name: "",
         email: "",
         password: "",
