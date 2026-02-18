@@ -2,10 +2,10 @@ import type { User } from "./user.types";
 
 export type Owner = {
     id: number;
-    user: User;
+    user: User | null;
     ownerName: string;
     image?: string;
     percentage: number;
-    paymentNumber?: string | null;
+    paymentNumber?: string;
     fileImage?: File | null;
 }
