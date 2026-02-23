@@ -1,7 +1,7 @@
 import axios from './axios';
 import type { Course } from '../types/course.types'; // ודאי שהנתיב תואם לקובץ הטיפוסים שלך
 
-const url = 'courses';
+const url = 'Course';
 
 export const getCourses = async () => {
     try {

@@ -1,7 +1,7 @@
 import  { type User}  from '../types/user.types';
 import axios from './axios';
 
-const url = 'auth';
+const url = 'login';
 
 export type RegisterType = Omit<User & { password: string }, 'id'>;
 

@@ -1,12 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit'
 import coupon from './coupon/coupon.slice'
 import user from './user/user.slice'
+import owner from './owner/owner.slice'
+import course from './course/course.slice'
+import  contentType  from './contentType/contentType.slice'
 import { useDispatch, useSelector } from 'react-redux'
+import progress from './progress/progress.slice'
+import skill from './skill/skill.slice'
+import enrollment from './enrollment/enrollment.slice'
+import lesson  from './lesson/lesson.slice'
 export const store = configureStore({
     reducer: {
         user,
+        course,
+        contentType,
+        progress,
+        enrollment,
+        skill,
+        owner,
         coupon,
-        
+        lesson
     }
 })
 

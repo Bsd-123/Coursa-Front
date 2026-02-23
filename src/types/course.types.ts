@@ -6,7 +6,7 @@ export type Course = {
     name : string
     description : string
     price : number
-    Image :  string
+    image :  string
     skill : Skill
     owner : Owner
     status : boolean

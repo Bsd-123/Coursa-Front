@@ -1,8 +1,8 @@
 import React, { useState, type ChangeEvent } from 'react';
-import LogoImg from './Logo.png';
+import LogoImg from '../assets/Logo.png';
 import type { Owner } from '../types/owner.types';
 
-const RegisterOwner = () => {
+const OwnerRegister = () => {
     const [ownerDetails, setOwnerDetails] = useState<Owner>({
         id: 0,
         user: null, 
@@ -127,4 +127,4 @@ const RegisterOwner = () => {
     );
 };
 
-export default RegisterOwner;
+export default OwnerRegister;

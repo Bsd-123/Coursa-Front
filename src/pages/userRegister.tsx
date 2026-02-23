@@ -1,4 +1,4 @@
-import LogoImg from './Logo.png';
+import LogoImg from '../assets/Logo.png';
 import { useState } from 'react';
 import { type User ,ROLES} from '../types/user.types';
 import { useAuthContext } from '../auth/useAuthContext';
@@ -40,8 +40,7 @@ function UserRegister(){
             return;
         }
 
-        console.log('Logging in with:',  userDetails );
-        setError('');
+        
     };
 
     return (
