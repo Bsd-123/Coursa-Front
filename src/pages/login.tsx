@@ -4,6 +4,7 @@ import {
   login as loginService,
   type LoginType,
 } from '../services/auth.service';
+import Logo from '../assets/Logo.png'
 import { Link, useNavigate } from 'react-router';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 function Login(){
@@ -41,8 +42,8 @@ function Login(){
     return (
         <div className="login-container">
             <div className="login-card">
+                <img src={Logo}></img>
                 <h1>התחברות</h1>
-                <image href='./Logo.png'></image>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">דוא"ל:</label>

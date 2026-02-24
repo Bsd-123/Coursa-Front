@@ -1,5 +1,7 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useEffect, useState, type ReactNode } from "react";
 import type { User } from "../types/user.types";
+import { getSession, setSession } from "./auth.utils";
+import { loginByToken } from "../services/auth.service";
 
 type AuthStateType = {
     user: User | null,
@@ -10,6 +12,7 @@ type AuthContextType = AuthStateType & {
     isAuthonticated: boolean
     isInitialized: boolean
 }
+
 
 export const AuthContext = createContext<AuthContextType | null>(null)
 
@@ -23,7 +26,25 @@ export const AuthProvider = ({ children }: Props) => {
     const setUser = (user: User) => {
         setAuthState({ ...authState, user })
     }
-    return <AuthContext.Provider value={{ ...authState, setUser, isAuthonticated: !!authState.user, isInitialized: false }}>
+    useEffect(() => {
+        const initialize = async () => {
+            const token = getSession()
+            try {
+                if (token) {
+                    const user = await loginByToken(token);
+                    setSession(token)
+                    setAuthState((prev) => ({ ...prev, isInitialized: true, user }))
+                } else {
+                    throw Error('Unauthorized')
+                }
+            } catch (error) {
+                setAuthState((prev) => ({ ...prev, isInitialized: true }))
+            }
+        }
+        initialize()
+    }, [])
+    console.log(!!authState.user)
+    return <AuthContext.Provider value={{ ...authState, setUser, isAuthonticated: !!authState.user, isInitialized: true }}>
         {children}
     </AuthContext.Provider>
 }

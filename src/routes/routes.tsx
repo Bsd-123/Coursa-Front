@@ -1,26 +1,27 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Layout from '../layouts/basicLayout'
-import  Login from '../pages/login'
+import Login from '../pages/login'
 import UserRegister from '../pages/userRegister'
 import AuthGuard from '../auth/AuthGuard'
-function Routes(){
-    
+import OwnerRegister from "../pages/ownerRegister"
+function Routes() {
+
     const router = createBrowserRouter([
         {
-            path: '/',
+            path: '/login',
             element: <Login />,
         },
         {
             path: '/register',
-            element: <UserRegister/>,
+            element: <UserRegister />,
         },
         {
             path: '/OwnerRegister',
-            element: <UserRegister/>,
+            element: <AuthGuard><OwnerRegister /></AuthGuard>,
         },
         {
             path: 'home',
-            element: <AuthGuard><Layout/></AuthGuard>,
+            element: <AuthGuard><Layout /></AuthGuard>,
             children: [
                 { index: true, element: <h1>Wellcome!</h1> },
                 { path: '*', element: <h1>404 Page not found</h1> },

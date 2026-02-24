@@ -1,5 +1,5 @@
 import React, { useState, type ChangeEvent } from 'react';
-import LogoImg from './Logo.png';
+import LogoImg from '../assets/Logo.png';
 import type { Owner } from '../types/owner.types';
 
 const RegisterOwner = () => {
