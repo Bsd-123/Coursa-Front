@@ -17,11 +17,6 @@ function App() {
 
 >>>>>>> 236a4ab562dd2d7affec24b25e2586ddf8fd8a73
   return (
-<<<<<<< HEAD
-    <AuthProvider>
-      <Routes />
-    </AuthProvider>
-=======
     <>
     <Provider  store={store}>
       <AuthProvider>
