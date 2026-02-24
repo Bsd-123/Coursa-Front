@@ -13,7 +13,6 @@ type AuthContextType = AuthStateType & {
     isInitialized: boolean
 }
 
-
 export const AuthContext = createContext<AuthContextType | null>(null)
 
 type Props = {
