@@ -3,7 +3,7 @@ import type { Enrollment } from "../../types/enrollment.types";
 import { getEnrollments } from "../../services/enrollment.service";
 
 // Thunk לטעינת כל ההרשמות
-export const fetchEnrollments = createAsyncThunk("enrollment/fetchEnrollments", async () => {
+export const fetchEnrollments = createAsyncThunk("enrollment/fetchMyEnrollments", async () => {
     const data = await getEnrollments();
     return data;
 });

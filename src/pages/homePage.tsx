@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import { AboutSection } from '../sections/aboutSection';
+import { useNavigate } from 'react-router';
 import '../styles/homePage.css'; // נניח שזה קובץ ה-CSS שלך
 import { useSelector } from 'react-redux';
 import { useAppDispatch, type RootState } from '../redux/store';
 import { fetchOwners } from '../redux/owner/owner.slice';
 import { fetchCourses } from '../redux/course/course.slice';
-// בקובץ הגדרות או בראש הקומפוננטה
-const BASE_URL = "https://localhost:7291"; // ה-URL של שרת ה-API שלך
+import { Paths } from '../routes/paths';
+import { BASE_URL } from '../App';
+
 
 const HomePage = () => {
 
     const dispatch = useAppDispatch();
-  
+    const navigate = useNavigate()
     const owners = useSelector((state: RootState) => state.owner.owners);
     const courses = useSelector((state: RootState) => state.course.courses)
     useEffect(() => {
@@ -34,7 +36,7 @@ const HomePage = () => {
                             <p className="course-description">{course.description}</p>
                             <p className="course-publisher">מפרסם: {course.owner.ownerName}</p>
                             <p className="course-rating">מחיר: {course.price} ⭐</p>
-                            <button className="view-course-button" onClick={()=> console.log(owners)}>צפה בקורס</button>
+                            <button className="view-course-button" onClick={()=> navigate(`/${Paths.courseView}/${course.id}`)}>צפה בקורס</button>
                         </div>
                     ))}
                 </div>
@@ -49,7 +51,7 @@ const HomePage = () => {
                             <img src={`${BASE_URL}${publisher.image}`} alt={publisher.ownerName} className="publisher-logo" />
                             <h3>{publisher.ownerName}</h3>
                             <p className="publisher-description">כדאי להוסיף תיאור על הבעלים</p>
-                            <button className="view-publisher-button">צפה במפרסם</button>
+                            <button className="view-publisher-button" onClick={()=> navigate(`/${Paths.ownerView}/${publisher.id}`)}>צפה במפרסם</button>
                         </div>
                     ))}
                 </div>

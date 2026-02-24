@@ -5,6 +5,9 @@ import UserRegister from '../pages/userRegister'
 import AuthGuard from '../auth/AuthGuard'
 import OwnerRegister from "../pages/ownerRegister"
 import HomePage from "../pages/homePage"
+import { Paths } from "./paths"
+import OwnerView from "../pages/ownerView"
+import CourseView from "../pages/courseView"
 function Routes(){
     
     const router = createBrowserRouter([
@@ -25,6 +28,8 @@ function Routes(){
             element: <AuthGuard><Layout/></AuthGuard>,
             children: [
                 { path: 'home', element: <HomePage/> },
+                { path: 'ownerView/:id', element: <OwnerView/> },
+                { path: 'courseView/:id', element: <CourseView/> },
                 { path: 'about', element: <h1>About Us</h1> }, 
                 { path: 'products', element: <h1>Our Products</h1> },
                 { index: true, element: <h1>Wellcome!</h1> },

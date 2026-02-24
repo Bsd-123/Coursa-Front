@@ -5,7 +5,7 @@ import {
   type LoginType,
 } from '../services/auth.service';
 import Logo from '../assets/Logo.png'
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { setSession } from '../auth/auth.utils';
 import { Paths } from '../routes/paths';
@@ -95,7 +95,3 @@ function Login(){
 }
 
 export default Login
-
-function setAuthState(arg0: (prev: any) => any) {
-    throw new Error('Function not implemented.');
-}

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+
+
 .home-page-container {
     max-width: 1200px;
     margin: 20px auto;
@@ -161,4 +164,124 @@ h2 {
     line-height: 1.6;
     margin-bottom: 15px;
     color: #444;
+}
+
+.home-page-container {
+    max-width: 1000px; /* הקטנה מ-1200 למראה מהודק */
+    margin: 10px auto;
+    padding: 15px;
+    font-family: 'Rubik', sans-serif;
+    direction: rtl;
+}
+
+/* כותרת מוקטנת עם הגרדיאנט המדויק של ה-Login */
+h2 {
+    text-align: center;
+    font-size: 1.8em; /* הקטנה מ-2.2 */
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #48d1cc 0%, #ff9b8a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* כרטיס קורס - העתק מדויק של ה-Login Card */
+.course-card {
+    background: white;
+    padding: 20px; /* הקטנה מה-40 של הלובי */
+    border-radius: 10px;
+    border: 3px solid #17a2a2; /* עובי מסגרת זהה ללובי */
+    box-shadow: 0 8px 32px rgba(23, 162, 162, 0.2);
+    text-align: center;
+    transition: transform 0.2s;
+    /* גרדיאנט רקע זהה ללובי */
+    background: linear-gradient(180deg, #ffffff 50%, #75c8c5 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(23, 162, 162, 0.3);
+}
+
+.course-image {
+    width: 100%;
+    height: 140px; /* הקטנה מ-180 */
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #e0e0e0;
+    margin-bottom: 12px;
+}
+
+.course-card h3 {
+    color: #333;
+    font-size: 1.3em;
+    margin: 5px 0;
+    /* הדגשה מתחת לשם הקורס כמו ב-Labels */
+    border-bottom: 2px solid #ff9b8a;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.course-description {
+    font-size: 0.85em; /* מוקטן */
+    color: #555;
+    height: 55px; /* מוקטן */
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+/* כפתור בסגנון ה-Login Button */
+.view-course-button {
+    width: 100%;
+    padding: 10px;
+    background: #17a2a2; /* צבע אחיד כמו ה-Login Button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.view-course-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 155, 138, 0.4);
+}
+
+/* סקשן "אודות" שהופך לכרטיס המפרסם הראשי */
+.about-us {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 3px solid #17a2a2;
+    background: linear-gradient(180deg, #ffffff 50%, #75c8c5 100%);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 32px rgba(23, 162, 162, 0.2);
+}
+
+.publisher-logo {
+    width: 70px; /* מוקטן */
+    height: 70px;
+    border: 2px solid #ff9b8a;
+    border-radius: 50%;
+    background: white;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    .course-card, .about-us {
+        background: #1a3a3a;
+        color: #fff;
+    }
+    .course-card h3 { color: #fff; }
+}
+.owner-name{
+    font-size: 220%;
+    -webkit-text-fill-color:rgba(23, 162, 162)  !important;
 }

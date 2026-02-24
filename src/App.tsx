@@ -4,10 +4,10 @@ import './App.css'
 import { AuthProvider } from './auth/AuthContext'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-
+export const BASE_URL = "https://localhost:7291";
 function App()
 {
-
+  
   return (
     <>
     <Provider  store={store}>

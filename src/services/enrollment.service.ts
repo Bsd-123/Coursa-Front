@@ -5,7 +5,10 @@ const url = 'enrollments';
 
 export const getEnrollments = async () => {
     try {
-        const response = await axios.get(url);
+        const token = ("token"); 
+        const response = await axios.get(url, {
+        headers: { Authorization: `Bearer ${token}`}
+    });
         return response.data;
     } catch (error) {
         console.error("Error fetching enrollments:", error);

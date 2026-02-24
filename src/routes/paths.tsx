@@ -4,4 +4,6 @@ export const Paths = {
   register: 'register',
   products: 'products',
   users: 'users',
+  ownerView : 'ownerView',
+  courseView : 'courseView'
 };
