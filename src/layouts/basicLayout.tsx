@@ -4,7 +4,7 @@ const Layout = () => {
     return <>
         <header>
             <nav>
-                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/">Home</NavLink>
                 <NavLink to="about">About</NavLink>
                 <NavLink to="products">Products</NavLink>
             </nav>

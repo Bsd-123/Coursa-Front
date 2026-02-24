@@ -43,7 +43,10 @@ export const AuthProvider = ({ children }: Props) => {
         }
         initialize()
     }, [])
+<<<<<<< HEAD
     console.log(!!authState.user)
+=======
+>>>>>>> 4f2870edf90c89ca3fc26234e2f3f29b1e26c9cf
     return <AuthContext.Provider value={{ ...authState, setUser, isAuthonticated: !!authState.user, isInitialized: true }}>
         {children}
     </AuthContext.Provider>

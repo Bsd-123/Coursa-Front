@@ -1,7 +1,7 @@
 import axios from './axios';
 import type { Owner } from '../types/owner.types';
 
-const url = 'owners';
+const url = 'Owner';
 
 export const getOwners = async () => {
     try {
@@ -29,7 +29,7 @@ export const addOwner = async (owner: Owner) => {
     
     // מעבר על כל השדות והוספתם ל-FormData
     formData.append('ownerName', owner.ownerName);
-    formData.append('userId', owner.user.id.toString());
+    formData.append('userId', owner.user?.id?.toString() ?? '0');
     formData.append('percentage', owner.percentage.toString());
     if (owner.paymentNumber) formData.append('paymentNumber', owner.paymentNumber);
     
@@ -52,7 +52,7 @@ export const addOwner = async (owner: Owner) => {
 export const updateOwner = async (id: number, owner: Owner) => {
     const formData = new FormData();
     formData.append('ownerName', owner.ownerName);
-    formData.append('userId', owner.user.id.toString());
+    formData.append('userId', owner.user?.id?.toString() ?? '0');
     formData.append('percentage', owner.percentage.toString());
     if (owner.paymentNumber) formData.append('paymentNumber', owner.paymentNumber);
     

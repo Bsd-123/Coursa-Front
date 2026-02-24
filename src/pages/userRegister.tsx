@@ -40,8 +40,7 @@ function UserRegister(){
             return;
         }
 
-        console.log('Logging in with:',  userDetails );
-        setError('');
+        
     };
 
     return (

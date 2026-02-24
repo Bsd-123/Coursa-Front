@@ -1,42 +1,52 @@
 import { useState } from 'react';
 import { useAuthContext } from '../auth/useAuthContext';
 import {
-  login as loginService,
+    login,
   type LoginType,
 } from '../services/auth.service';
 import Logo from '../assets/Logo.png'
 import { Link, useNavigate } from 'react-router';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { setSession } from '../auth/auth.utils';
+import { Paths } from '../routes/paths';
 function Login(){
     useDocumentTitle('Login');
     const navigate = useNavigate()
     const { setUser } = useAuthContext()
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [loginDetails, setLoginDetails] = useState<LoginType>({
+        email:"",
+        password:""
+    })
     const [error, setError] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
         // Validation
-        if (!email || !password) {
+        if (!loginDetails.email || !loginDetails.password) {
             setError('יש להזין דוא"ל וסיסמה');
             return;
         }
         
-        if (!email.includes('@')) {
+        if (!loginDetails.email.includes('@')) {
             setError('דוא"ל לא תקין');
             return;
         }
 
-        if (password.length < 6) {
+        if (loginDetails.password.length < 6) {
             setError('הסיסמה חייבת להיות לפחות 6 תווים');
             return;
         }
 
-        console.log('Logging in with:', { email, password });
+        console.log('Logging in with:', { loginDetails});
         setError('');
-        setUser(login(email,password))
+        const user = await login(loginDetails)
+        
+        setSession(user.token);
+        setUser(user.user)
+        console.log(user)
+        navigate(`/${Paths.home}`)
+
     };
 
     return (
@@ -50,9 +60,9 @@ function Login(){
                         <input
                             type="email"
                             id="email"
-                            value={email}
+                            value={loginDetails.email}
                             onChange={(e) => {
-                                setEmail(e.target.value);
+                                setLoginDetails({email:e.target.value, password :loginDetails.password});
                                 setError('');
                             }}
                             placeholder="הזן את דוא''ל"
@@ -64,9 +74,9 @@ function Login(){
                         <input
                             type="password"
                             id="password"
-                            value={password}
+                            value={loginDetails.password}
                             onChange={(e) => {
-                                setPassword(e.target.value);
+                                setLoginDetails({email:loginDetails.email, password :e.target.value});
                                 setError('');
                             }}
                             placeholder="הזן את סיסמתך"
@@ -85,3 +95,7 @@ function Login(){
 }
 
 export default Login
+
+function setAuthState(arg0: (prev: any) => any) {
+    throw new Error('Function not implemented.');
+}
