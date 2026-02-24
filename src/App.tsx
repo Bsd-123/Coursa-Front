@@ -4,7 +4,6 @@ import './App.css'
 import { AuthProvider } from './auth/AuthContext'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-<<<<<<< HEAD
 export const BASE_URL = "https://localhost:7291";
 function App()
 {
