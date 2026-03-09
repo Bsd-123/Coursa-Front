@@ -10,13 +10,11 @@ function App()
   
   return (
     <>
-    <Provider  store={store}>
+    <Provider store={store}>
       <AuthProvider>
-      <Routes/>
-    </AuthProvider>
+        <Routes/>
+      </AuthProvider>
     </Provider>
-    
-      
     </>
   )
 }

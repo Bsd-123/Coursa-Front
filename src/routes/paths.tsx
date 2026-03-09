@@ -5,5 +5,6 @@ export const Paths = {
   products: 'products',
   users: 'users',
   ownerView : 'ownerView',
-  courseView : 'courseView'
+  courseView : 'courseView',
+  lessonPage : 'lessonPage'
 };

@@ -17,6 +17,7 @@ const AuthGuard = ({ children, roles }: Props) => {
     }
 
     if (!isAuthonticated) {
+        
         return <Navigate to={`/${Paths.login}`} />
     }
 

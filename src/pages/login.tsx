@@ -7,7 +7,7 @@ import {
 import Logo from '../assets/Logo.png'
 import { useNavigate } from 'react-router';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
-import { setSession } from '../auth/auth.utils';
+import { getSession, setSession } from '../auth/auth.utils';
 import { Paths } from '../routes/paths';
 function Login(){
     useDocumentTitle('Login');
@@ -37,14 +37,13 @@ function Login(){
             setError('הסיסמה חייבת להיות לפחות 6 תווים');
             return;
         }
-
-        console.log('Logging in with:', { loginDetails});
         setError('');
         const user = await login(loginDetails)
+        console.log(user);
         
         setSession(user.token);
+        localStorage.setItem("token",getSession() || "")
         setUser(user.user)
-        console.log(user)
         navigate(`/${Paths.home}`)
 
     };

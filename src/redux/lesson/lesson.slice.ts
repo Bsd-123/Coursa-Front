@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Lesson } from "../../types/lesson.types";
-import { getLessons } from "../../services/lesson.service";
+import { getLessons, getLessonsByCourseId } from "../../services/lesson.service";
 
 // Thunk לטעינת כל השיעורים
 export const fetchLessons = createAsyncThunk("lesson/fetchLessons", async () => {
     const data = await getLessons();
+    return data;
+});
+
+export const fetchLessonsByCourseId = createAsyncThunk("lesson/fetchLessonsByCourseId", async (id: number) => {
+    const data = await getLessonsByCourseId(id);
     return data;
 });
 
@@ -39,6 +44,9 @@ const lessonSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchLessons.fulfilled, (state, action: PayloadAction<Lesson[]>) => {
+                state.lessons = action.payload;
+            })
+            .addCase(fetchLessonsByCourseId.fulfilled, (state, action) => {
                 state.lessons = action.payload;
             })
             .addCase(fetchLessons.rejected, (state, action) => {

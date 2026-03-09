@@ -20,8 +20,12 @@ export const login = async (credentials: LoginType) => {
 };
 
 export const loginByToken = async (token: string) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`
-  const response = await axios.get(`${url}/getUserByToken`);
+  //axios.defaults.headers.common.Authorization = `Bearer ${token}`
+  const response = await axios.get('/Login/getUserByToken', {
+    headers: {
+      Authorization: `Bearer ${token}` // שליחה ישירה בקריאה עצמה
+    }
+  })
   const data = response.data;
   return data;
 };

@@ -5,9 +5,11 @@ import UserRegister from '../pages/userRegister'
 import AuthGuard from '../auth/AuthGuard'
 import OwnerRegister from "../pages/ownerRegister"
 import HomePage from "../pages/homePage"
-import { Paths } from "./paths"
+//import { Paths } from "./paths"
 import OwnerView from "../pages/ownerView"
 import CourseView from "../pages/courseView"
+import { Paths } from "./paths"
+import LessonPage from "../pages/lessonPage"
 function Routes(){
     
     const router = createBrowserRouter([
@@ -29,10 +31,12 @@ function Routes(){
             children: [
                 { path: 'home', element: <HomePage/> },
                 { path: 'ownerView/:id', element: <OwnerView/> },
-                { path: 'courseView/:id', element: <CourseView/> },
+                { path: `${Paths.lessonPage}/:courseId/:lessonId`, element: <LessonPage/> },
                 { path: 'about', element: <h1>About Us</h1> }, 
                 { path: 'products', element: <h1>Our Products</h1> },
+                { path: `${Paths.courseView}/:id`, element: <CourseView/> },
                 { index: true, element: <h1>Wellcome!</h1> },
+
                 { path: '*', element: <h1>404 Page not found</h1> },
             ],
         },

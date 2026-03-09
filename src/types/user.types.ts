@@ -1,9 +1,13 @@
 export type User ={
     id: number
-    name: string,
     email: string,
+    name: string,
     password: string
+    regDate: Date
     role: Role
+    status: boolean
+    resetPasswordToken : string
+    resetTokenExpires : Date
 }
 
 export const ROLES = {

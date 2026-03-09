@@ -1,7 +1,7 @@
 import axios from './axios';
 import type { Lesson } from '../types/lesson.types'; // ודאי שהנתיב תואם
 
-const url = 'lessons';
+const url = 'Lesson';
 
 export const getLessons = async () => {
     try {

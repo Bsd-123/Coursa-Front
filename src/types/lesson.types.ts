@@ -11,4 +11,5 @@ export type Lesson = {
     status: boolean | null; 
     course: Course; 
     type: ContentType;
+    durationSec: number
 }

@@ -1,7 +1,7 @@
 import axios from './axios';
 import type { ContentType } from '../types/contentType.types'; 
 
-const url = 'contentTypes';
+const url = 'contentType';
 
 export const getContentTypes = async () => {
     try {

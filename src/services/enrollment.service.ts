@@ -1,12 +1,13 @@
 import axios from './axios';
 import type { Enrollment } from '../types/enrollment.types'; // וודא שהנתיב תואם
+//import { loginByToken } from './auth.service';
 
-const url = 'enrollments';
+const url = 'enrollment';
 
 export const getEnrollments = async () => {
     try {
-        const token = ("token"); 
-        const response = await axios.get(url, {
+        const token = localStorage.getItem("token")|| ""; 
+        const response = await axios.get(`${url}/myCourses`, {
         headers: { Authorization: `Bearer ${token}`}
     });
         return response.data;
@@ -20,12 +21,15 @@ export const getEnrollments = async () => {
  * בדרך כלל ב-Enrollment המפתח מורכב מ-UserId ו-CourseId.
  * אם ה-API שלך תומך בשליפה לפי מזהה ייחודי או לפי שילוב, התאם את הפרמטרים כאן.
  */
-export const getEnrollmentByIds = async (userId: number, courseId: number) => {
+export const getMyEnrollment = async ( courseId: number) => {
     try {
-        const response = await axios.get(`${url}/${userId}/${courseId}`);
+        const token = localStorage.getItem("token")|| "";
+        const response = await axios.get(`${url}/myEnrollments/${courseId}`,{
+        headers: { Authorization: `Bearer ${token}`}
+    });
         return response.data;
     } catch (error) {
-        console.error(`Error fetching enrollment for user ${userId} and course ${courseId}:`, error);
+        console.error(`Error fetching enrollment for you and course ${courseId}:`, error);
         throw error;
     }
 };
@@ -40,12 +44,12 @@ export const addEnrollment = async (newEnrollment: Enrollment) => {
     }
 };
 
-export const updateEnrollment = async (userId: number, courseId: number, updatedEnrollment: Enrollment) => {
+export const updateEnrollment = async (id: number, updatedEnrollment: Enrollment) => {
     try {
-        const response = await axios.put(`${url}/${userId}/${courseId}`, updatedEnrollment);
+        const response = await axios.put(`${url}/${id}`, updatedEnrollment);
         return response.data;
     } catch (error) {
-        console.error(`Error updating enrollment for user ${userId}:`, error);
+        console.error(`Error updating enrollment for id ${id}:`, error);
         throw error;
     }
 };

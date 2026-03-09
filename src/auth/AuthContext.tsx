@@ -5,6 +5,7 @@ import { loginByToken } from "../services/auth.service";
 
 type AuthStateType = {
     user: User | null,
+    isInitialized: boolean
 }
 
 type AuthContextType = AuthStateType & {
@@ -20,8 +21,7 @@ type Props = {
 }
 
 export const AuthProvider = ({ children }: Props) => {
-    const [authState, setAuthState] = useState<AuthStateType>({ user: null })
-
+    const [authState, setAuthState] = useState<AuthStateType>({ user: null, isInitialized: false })
     const setUser = (user: User) => {
         setAuthState({ ...authState, user })
     }
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: Props) => {
                 if (token) {
                     const user = await loginByToken(token);
                     setSession(token)
-                    setAuthState((prev) => ({ ...prev, isInitialized: true, user }))
+                    setAuthState({ user, isInitialized: true });
                 } else {
                     throw Error('Unauthorized')
                 }
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: Props) => {
         }
         initialize()
     }, [])
-    return <AuthContext.Provider value={{ ...authState, setUser, isAuthonticated: !!authState.user, isInitialized: true }}>
+    return <AuthContext.Provider value={{ ...authState, setUser, isAuthonticated: !!authState.user }}>
         {children}
     </AuthContext.Provider>
 }

@@ -1,27 +1,29 @@
 import LogoImg from '../assets/Logo.png';
 import { useState } from 'react';
-import { type User ,ROLES} from '../types/user.types';
+import { ROLES} from '../types/user.types';
 import { useAuthContext } from '../auth/useAuthContext';
-import { Link, useNavigate } from 'react-router';
+import {  useNavigate } from 'react-router';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
-import { setSession } from '../auth/auth.utils';
-import {
-  login as loginService,
-  type LoginType,
-} from '../services/auth.service';
+import { getSession, setSession } from '../auth/auth.utils';
 import { Paths } from '../routes/paths';
+import { register } from '../services/auth.service';
 function UserRegister(){
-    const [userDetails, setUserDetails] = useState<User>({
-        id : 0,
+    useDocumentTitle("Register")
+    const [userDetails, setUserDetails] = useState({
         name: "",
         email: "",
         password: "",
-        role : ROLES.USER
+        regDate: new Date,
+        role : ROLES.USER,
+        resetPasswordToken: "",
+        resetTokenExpires: new Date(),
+        status: true
     });
+    const navigate = useNavigate()
     const { setUser } = useAuthContext()
     const [error, setError] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
         // Validation
@@ -40,6 +42,11 @@ function UserRegister(){
             return;
         }
 
+        const user = await register(userDetails)
+        setSession(user.token);
+        localStorage.setItem("token",getSession() || "")
+        setUser(user.user)
+        navigate(`/${Paths.home}`)
         
     };
 
